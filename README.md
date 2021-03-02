@@ -3,9 +3,5 @@
 # Get Started
 
 # DB Design
-<p align="center">
-<img src="
-https://i.imgur.com/3sylcwL.png
-">
-</p> </br>
-We wanted to start with a simple example
+![db_model_1](https://i.imgur.com/3sylcwL.png)
+We wanted to start with a basic example
