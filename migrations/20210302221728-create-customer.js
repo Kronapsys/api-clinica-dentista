@@ -9,10 +9,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            msg: "El nombre solo puede contener letras"
+          },
+          len: {
+            args: [2, 255],
+            msg: "El nombre tiene que tener mínimo dos caracteres"
+          }
+        }
       },
-      subname: {
-        type: Sequelize.STRING
+      surname: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       address: {
         type: Sequelize.STRING
@@ -21,10 +32,18 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: {
+            msg: "El email tiene que ser un correo válido"
+          }
+        }
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
