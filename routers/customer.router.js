@@ -4,7 +4,7 @@ const appointmentRouter = require('./appointment.router');
 const customerController = require('../controllers/customer.controller');
 
 // CUSTOMER NESTED RESOURCES
-router.use('/:id/appointments', cityRouter);
+router.use('/:id/appointments', appointmentRouter);
 
 // CUSTOMER ENDPOINTS
 router.get('/',async (req,res) => {
