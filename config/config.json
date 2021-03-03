@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "database_development",
+    "database": "database_development_dental_clinic",
     "host": "localhost",
     "dialect": "mysql"
   },

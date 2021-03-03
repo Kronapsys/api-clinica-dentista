@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Appointment,{
         as: 'appointment',
-        sourceKey: 'cutomer_id'
+        sourceKey: 'customer_id'
       })
     }
   };
