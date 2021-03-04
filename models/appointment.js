@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  appointment.init(
+  Appointment.init(
     {
       customer_id: DataTypes.INTEGER,
       date: DataTypes.DATE,
