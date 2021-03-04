@@ -6,7 +6,7 @@ const customerRouter = require("./routers/customer.router");
 router.use('/customers', customerRouter);
 
 // Controllers
-//const authController = require("./controllers/auth.controller");
+const authController = require("./controllers/auth.controller");
 //const customerController = require("./controllers/customer.controller");
 
 // const filmRouter = require("./routers/filmRouter");
@@ -22,7 +22,7 @@ router.use('/customers', customerRouter);
 
 //Dos rutas: login y registro
 // /singin & /singup
-// router.post("/signin", authController.signIn);
-// router.post("/signup", authController.signUp);
+router.post("/signin", authController.signIn);
+router.post("/signup", authController.signUp);
 
 module.exports = router;

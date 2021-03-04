@@ -62,8 +62,8 @@ module.exports = {
         let token = jwt.sign({ customer: customer }, "geekhubs", {
           expiresIn: "24h",
         });
-
         res.json({
+          msg: 'Cliente dado de alta correctamente',
           customer: customer,
           token: token,
         });
