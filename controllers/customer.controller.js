@@ -1,6 +1,5 @@
 const {Customer} = require("../models");
 const bcrypt = require("bcrypt");
-console.log(Customer);
 class CustomerController {
   constructor() {}
 
