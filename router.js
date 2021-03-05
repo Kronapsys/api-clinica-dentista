@@ -3,7 +3,10 @@ const router = require("express").Router();
 //const authController = require("./controllers/auth.controller");
 
 const customerRouter = require("./routers/customer.router");
+const appointmentRouter = require("./routers/appointment.router");
+
 router.use('/customers', customerRouter);
+router.use('/appointments', appointmentRouter);
 
 // Controllers
 const authController = require("./controllers/auth.controller");

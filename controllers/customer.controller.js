@@ -12,7 +12,6 @@ class CustomerController {
   }
 
   async store(customer) {
-    //customer.password = await bcrypt.hash(customer.password, 10);
     return Customer.create(customer);
   }
 
