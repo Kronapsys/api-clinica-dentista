@@ -3,14 +3,26 @@ const appointmentController = require("../controllers/appointment.controller");
 
 // APPOINTMENT ENDPOINTS
 
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    res.json(await appointmentController.index(id));
-  } catch (error) {
-    return res.status(500).json({
-      message: error.message,
+router.get('/', async (req, res) => {
+  try{
+    res.json(await appointmentController.indexAll())
+  } catch(error){
+    res.status(500).json({
+      error: "error",
+      message: "error",
     });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try{
+      let id = req.params.id;
+      res.json(await appointmentController.findById(id));
+  }catch(error){
+      res.status(500).json({
+          error: "error",
+          message: "error",
+      });
   }
 });
 

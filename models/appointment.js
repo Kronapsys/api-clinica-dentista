@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Customer, {
         as: "customer",
         foreignKey: "customerId",
+        targetKey: 'id'
       });
     }
   }
   Appointment.init(
     {
-      customer_id: DataTypes.INTEGER,
       date: DataTypes.DATE,
       description: DataTypes.STRING
     },

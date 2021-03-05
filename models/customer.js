@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Appointment, {
-        as: "appointments"
+        as: "appointments",
+        sourceKey: 'id'
       });
     }
   }

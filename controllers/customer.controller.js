@@ -1,15 +1,14 @@
 const {Customer} = require("../models");
-const bcrypt = require("bcrypt");
 class CustomerController {
   constructor() {}
 
   async indexAll() {
-    return Customer.find().limit(10);
+    return Customer.findAll();
   }
 
-  async index(id) {
-    return Customer.findById(id);
-  }
+  async findById(id){
+    return Customer.findOne({where:{id}});
+}
 
   async store(customer) {
     return Customer.create(customer);

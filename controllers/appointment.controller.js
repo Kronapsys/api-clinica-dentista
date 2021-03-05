@@ -1,15 +1,18 @@
 const {Appointment} = require("../models");
 
 class AppointmentController {
-  constructor() {}
 
-  async indexAll(id) {
-    return Appointment.findAllById({where:{id}});
+  constructor() {
+
   }
 
-  async index(id) {
-    return Appointment.findById(id);
+  async indexAll() {
+    return Appointment.findAll();
   }
+
+  async findById(id){
+    return Appointment.findOne({where:{id}});
+}
 
   async store(appointment) {
     return Appointment.create(appointment);
