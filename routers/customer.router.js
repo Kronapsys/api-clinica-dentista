@@ -1,11 +1,23 @@
-const router = require("express").Router();
+const router = require("express").Router({mergeParams: true});
 const customerController = require("../controllers/customer.controller");
-//const appointmentRouter = require("./appointment.router");
+const appointmentRouter = require("./appointment.router");
 
 
 
 // CUSTOMER NESTED RESOURCES
-//router.use("/:id/appointments", appointmentRouter);
+router.use("/:id/appointments", appointmentRouter);
+
+appointmentRouter.get('/:id/appointments' , async(req, res) => {
+  try {
+      let id = req.params.id;
+      res.json(await customerController.findById(id));
+  } catch(error){
+    res.status(500).json({
+        error: "error",
+        message: "error"
+    });
+  }
+});
 
 // CUSTOMER ENDPOINTS
 router.get('/', async (req, res) => {
@@ -14,7 +26,7 @@ router.get('/', async (req, res) => {
   } catch(error){
       res.status(500).json({
           error: "error",
-          message: "error",
+          message: "error"
       });
   }
 });
@@ -26,7 +38,7 @@ router.get('/:id', async (req, res) => {
   }catch(error){
       res.status(500).json({
           error: "error",
-          message: "error",
+          message: "error"
       });
   }
 });
