@@ -1,4 +1,6 @@
 const {Appointment} = require("../models");
+const { Op } = require('sequelize');
+// const moment = require("moment");
 
 class AppointmentController {
 
@@ -13,6 +15,16 @@ class AppointmentController {
   async findById(id){
     return Appointment.findOne({where:{id}});
 }
+
+  async pendingAppointments() {
+    return Appointment.findAll({
+      where: {
+        date: {
+          [Op.gt]: new Date
+        }
+      }
+    });
+  }
 
   async store(appointment) {
     return Appointment.create(appointment);
