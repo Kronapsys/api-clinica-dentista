@@ -1,6 +1,11 @@
 const {Customer} = require("../models");
+
+
 class CustomerController {
-  constructor() {}
+
+  constructor() {
+
+  }
 
   async indexAll() {
     return Customer.findAll();
@@ -14,13 +19,11 @@ class CustomerController {
     return Customer.create(customer);
   }
 
-  async update(id, customer) {
-    return Customer.findByIdAndUpdate(id, customer);
-  }
 
   async destroy(id) {
-    return Customer.findByIdAndRemove(id);
+    return Customer.destroy({ where: {id}});
   }
+
 }
 
 let customerController = new CustomerController();

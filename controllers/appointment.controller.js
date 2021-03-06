@@ -1,6 +1,5 @@
 const {Appointment} = require("../models");
 const { Op } = require('sequelize');
-// const moment = require("moment");
 
 class AppointmentController {
 
@@ -30,16 +29,23 @@ class AppointmentController {
     return Appointment.create(appointment);
   }
 
-  async update(id, appointment) {
-    return Appointment.findByIdAndUpdate(id, appointment);
-  }
-
   async destroy(id) {
-    return Appointment.findByIdAndRemove(id);
+    return Appointment.destroy({ where: {id}});
   }
 
+  async destroyPendingAppointments(id) {
+    return Appointment.destroy({
+      where: {
+        id:id,
+        date: {
+          [Op.gt]: new Date
+        }
+      }
+    });
+  }
 
-}
+};
+
 
 let appointmentController = new AppointmentController();
 module.exports = appointmentController;

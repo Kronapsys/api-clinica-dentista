@@ -7,7 +7,7 @@ const appointmentRouter = require("./appointment.router");
 // CUSTOMER NESTED RESOURCES
 router.use("/:id/appointments", appointmentRouter);
 
-appointmentRouter.get('/:id/appointments' , async(req, res) => {
+router.get('/:id/appointments' , async(req, res) => {
   try {
       let id = req.params.id;
       res.json(await customerController.findById(id));
@@ -52,6 +52,22 @@ router.post("/", async (req, res) => {
     return res.status(500).json({
       message: error.message,
     });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+      let id = req.params.id;
+      const status = "Cliente eliminado"
+      const customer = await customerController.destroy(id);
+
+      res.json({ status, customer });
+
+  } catch(error){
+      res.status(500).json({
+          error: "error",
+          message: "error",
+      });
   }
 });
 

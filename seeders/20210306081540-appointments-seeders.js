@@ -26,6 +26,13 @@ module.exports = {
           updatedAt: new Date(),
           customerId: 3
         },
+        {
+          date: "2021-03-06T12:00:00.00",
+          description: "Lisa necesita un aparato",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          customerId: 2
+        },
       ],
       {}
     );
