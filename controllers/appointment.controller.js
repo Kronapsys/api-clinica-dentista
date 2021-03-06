@@ -14,6 +14,16 @@ class AppointmentController {
   async findById(id){
     return Appointment.findOne({where:{id}});
 }
+  async indexByCustomer(customerId){
+    return Appointment.findAll({
+      where: {
+        customerId,
+        date: {
+          [Op.gt]: new Date
+        }
+      }
+    });
+}
 
   async pendingAppointments() {
     return Appointment.findAll({

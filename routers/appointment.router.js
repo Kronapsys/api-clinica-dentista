@@ -40,6 +40,19 @@ router.delete('/pending/:id', async (req, res) => {
   }
 });
 
+router.get('/customers/:customerId', async (req, res) => {
+  try {
+      let customerId = req.params.customerId;
+      res.json(await appointmentController.indexByCustomer(customerId));
+  } catch(error){
+      res.status(500).json({
+          error: "error",
+          message: "error",
+      });
+  }
+});
+
+
 router.get('/:id', async (req, res) => {
   try {
       let id = req.params.id;
@@ -65,19 +78,6 @@ router.delete('/:id', async (req, res) => {
           error: "error",
           message: "error",
       });
-  }
-});
-
-
-
-router.get("/:id/appointments", async (req, res) => {
-  try {
-    res.json(await appointmentController.findAllById(req.params.id));
-  } catch (error) {
-    res.status(500).json({
-      error: "error",
-      message: "error",
-    });
   }
 });
 
