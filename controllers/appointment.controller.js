@@ -39,9 +39,9 @@ class AppointmentController {
     return Appointment.create(appointment);
   }
 
-  async destroy(id) {
-    return Appointment.destroy({ where: {id}});
-  }
+  // async destroy(id) {
+  //   return Appointment.destroy({ where: {id}});
+  // }
 
   async destroyPendingAppointments(id) {
     return Appointment.destroy({

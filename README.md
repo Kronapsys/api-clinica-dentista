@@ -16,6 +16,25 @@ We wanted to start with a basic example (KISS), with a clean design for in a fut
 Here you can check CRUD methods we have implemented:</br>
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6811309086d48fd811da)
 
+## endpoints
+POST: </br> 
+-Customer register: http://localhost:3000/signup </br>
+Customer login: http://localhost:3000/signin </br>
+Customer appointment: http://localhost:3000/appointments </br>  
+GET: </br>
+All customers registered: http://localhost:3000/customers/ </br>
+Get a customer by ID: http://localhost:3000/customers/:id </br>
+Show all appointments (pending and not): http://localhost:3000/appointments </br>
+Show only pending appointments: http://localhost:3000/appointments/pending </br>
+Show only pending appointments from an specific customer: http://localhost:3000/appointments/customers/:customerId </br>  
+DELETE: </br> 
+Delete a customer by ID: http://localhost:3000/customers/:id </br>
+Delete only pending appointments: http://localhost:3000/appointments/pending/:id </br>
+
+
+
+
+
 ## technologies used 🛠️
 ![JS](https://i.imgur.com/lDoNwKn.png)
 ![nodejs](https://i.imgur.com/JsJ02dB.png)
@@ -36,7 +55,7 @@ Here you can check CRUD methods we have implemented:</br>
 - nodemon </br>
 - sequelize </br>
 
-## Authors 🧐
+## authors 🧐
 <a href="https://github.com/vicGeo">@vicGeo</a> </br>
 <a href="https://github.com/Kronapsys">@Kronapsys</a> </br>
 

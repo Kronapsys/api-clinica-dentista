@@ -65,21 +65,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  try {
-      let id = req.params.id;
-      const status = "Cita eliminada"
-      const appointment = await appointmentController.destroy(id);
+// router.delete('/:id', async (req, res) => {
+//   try {
+//       let id = req.params.id;
+//       const status = "Cita eliminada"
+//       const appointment = await appointmentController.destroy(id);
 
-      res.json({ status, appointment});
+//       res.json({ status, appointment});
 
-  } catch(error){
-      res.status(500).json({
-          error: "error",
-          message: "error",
-      });
-  }
-});
+//   } catch(error){
+//       res.status(500).json({
+//           error: "error",
+//           message: "error",
+//       });
+//   }
+// });
 
 router.post("/", async (req, res) => {
   try {
