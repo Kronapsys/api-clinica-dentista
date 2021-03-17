@@ -1,4 +1,4 @@
-const router = require("express").Router({mergeParams: true});
+const router = require("express").Router();
 const customerController = require("../controllers/customer.controller");
 const appointmentRouter = require("./appointment.router");
 

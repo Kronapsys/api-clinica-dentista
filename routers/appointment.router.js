@@ -1,96 +1,67 @@
-const router = require("express").Router();
+const router = require("express").Router({ mergeParams: true });
 const appointmentController = require("../controllers/appointment.controller");
 
 // APPOINTMENT ENDPOINTS
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    res.json(await appointmentController.indexAll());
-  } catch(error){
+    const customerId = req.params.id;
+    if (!customerId) {
+      res.json(await appointmentController.indexAll());
+    } else {
+      res.json(await appointmentController.indexAllByCustomerId(customerId));
+    }
+
+  } catch (error) {
     res.status(500).json({
-      error: "error",
-      message: "error",
+      message: "Server error"
     });
-  }
+  };
 });
 
-router.get('/pending', async (req, res) => {
+//Recuperar una cita por id
+router.get("/:aid", async (req, res) => {
   try {
-    res.json(await appointmentController.pendingAppointments());
-  } catch(error){
+    const customerId = req.params.id;
+    if (!customerId) {
+      res.json(await appointmentController.indexOne(req.params.aid));
+    } else {
+      res.json(await appointmentController.indexOneByCustomer(customerId, req.params.aid));
+    }
+
+  } catch (error) {
     res.status(500).json({
-      error: "error",
-      message: "error",
+      message: "Server error"
     });
-  }
-});
-
-router.delete('/pending/:id', async (req, res) => {
-  try {
-    let id = req.params.id;
-    const status = "Cita pendiente eliminada correctamente";
-    const appointment = (await appointmentController.destroyPendingAppointments(id));
-    res.json({ status, appointment});
-
-  } catch(error){
-    res.status(500).json({
-        error: "error",
-        message: "error",
-    });
-  }
-});
-
-router.get('/customers/:customerId', async (req, res) => {
-  try {
-      let customerId = req.params.customerId;
-      res.json(await appointmentController.indexByCustomer(customerId));
-  } catch(error){
-      res.status(500).json({
-          error: "error",
-          message: "error",
-      });
-  }
+  };
 });
 
 
-router.get('/:id', async (req, res) => {
-  try {
-      let id = req.params.id;
-      res.json(await appointmentController.findById(id));
-  } catch(error){
-      res.status(500).json({
-          error: "error",
-          message: "error",
-      });
-  }
-});
-
-// router.delete('/:id', async (req, res) => {
-//   try {
-//       let id = req.params.id;
-//       const status = "Cita eliminada"
-//       const appointment = await appointmentController.destroy(id);
-
-//       res.json({ status, appointment});
-
-//   } catch(error){
-//       res.status(500).json({
-//           error: "error",
-//           message: "error",
-//       });
-//   }
-// });
-
+//Crear una cita nueva
 router.post("/", async (req, res) => {
   try {
-    const appointment = await appointmentController.store(req.body);
-    const status = "Cita creada correctamente";
-    res.json({ status, appointment });
+    const { date, description, customerId } = req.body;
+    const appointment = await appointmentController.createOne({ date, description, customerId });
+    res.json(appointment);
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: "Server error"
     });
-  }
+  };
 });
+
+//Eliminar una cita
+router.delete("/:aid", async (req, res) => {
+  try {
+    res.json(await appointmentController.deleteAppointment(req.params.aid));
+  } catch (error) {
+    return res.status(500).json({
+      message: "Server error"
+    });
+  };
+
+});
+
+
 
 module.exports = router;

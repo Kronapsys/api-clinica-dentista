@@ -1,61 +1,44 @@
-const {Appointment} = require("../models");
+const { Appointment } = require("../models");
 const { Op } = require('sequelize');
 
 class AppointmentController {
-
   constructor() {
 
   }
 
+
   async indexAll() {
     return Appointment.findAll();
+  };
+  // Citas de un customer
+  async indexAllByCustomerId(customerId) {
+    return Appointment.findAll({ where: { customerId  } })
   }
 
-  async findById(id){
-    return Appointment.findOne({where:{id}});
-}
-  async indexByCustomer(customerId){
-    return Appointment.findAll({
-      where: {
-        customerId,
-        date: {
-          [Op.gt]: new Date
-        }
-      }
-    });
-}
+  async indexOne(id) {
+    return Appointment.findOne({ where: { id } });
+  };
+  async indexOneByCustomer(customerId, id) {
+    const appointment = await Appointment.findOne({ where: { id } });
+    if (appointment.customerId == customerId) {
+      return appointment;
+    } else {
+      return {};
+    }
+  };
 
-  async pendingAppointments() {
-    return Appointment.findAll({
-      where: {
-        date: {
-          [Op.gt]: new Date
-        }
-      }
-    });
-  }
-
-  async store(appointment) {
+  //Crear una cita
+  async createOne(appointment) {
     return Appointment.create(appointment);
-  }
+  };
 
-  // async destroy(id) {
-  //   return Appointment.destroy({ where: {id}});
-  // }
-
-  async destroyPendingAppointments(id) {
-    return Appointment.destroy({
-      where: {
-        id:id,
-        date: {
-          [Op.gt]: new Date
-        }
-      }
-    });
-  }
+  //Eliminar una cita
+  async deleteAppointment(id) {
+    return Appointment.destroy({ where: { id } });
+  };
 
 };
 
-
 let appointmentController = new AppointmentController();
+
 module.exports = appointmentController;
