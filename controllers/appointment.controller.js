@@ -34,8 +34,15 @@ class AppointmentController {
 
   //Eliminar una cita
   async deleteAppointment(id) {
-    return Appointment.destroy({ where: { id } });
-  };
+    return Appointment.destroy({
+      where: {
+        id:id,
+        date: {
+          [Op.gte]: new Date
+        }
+      }
+    });
+  }
 
 };
 
